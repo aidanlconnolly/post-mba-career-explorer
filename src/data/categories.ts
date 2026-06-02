@@ -1,14 +1,18 @@
-import type { Category } from "../types";
+import type { Category, SuperCategory } from "../types";
 
 export type CategoryMeta = {
   label: Category;
   emoji: string;
-  description: string; // one-liner shown under the accordion header
-  roles: string; // parenthetical role summary shown as subtext
-  // Tailwind classes for badges/accents (kept as full literals so JIT picks them up)
-  badge: string; // text + bg + border for a chip
-  dot: string; // solid accent (bars, dots)
-  ring: string; // hover/selected ring
+  description: string;
+  roles: string;
+  badge: string;
+  dot: string;
+  ring: string;
+};
+
+export type SuperCategoryMeta = {
+  label: SuperCategory;
+  categories: Category[];
 };
 
 export const CATEGORIES: CategoryMeta[] = [
@@ -24,8 +28,8 @@ export const CATEGORIES: CategoryMeta[] = [
   {
     label: "Private Equity & Investing",
     emoji: "💰",
-    description: "Deploy capital across buyouts, growth, VC, and public markets.",
-    roles: "PE investing · PE portfolio ops (KKR Capstone, Bain Capital PG) · Growth equity · VC · Hedge fund · Search fund / ETA · Asset management · Family office",
+    description: "Deploy capital across buyouts, growth, and operating value creation.",
+    roles: "PE investing · PE portfolio ops (KKR Capstone, Bain Capital PG) · Growth equity · Hedge fund · Search fund / ETA · Asset management",
     badge: "text-emerald-300 bg-emerald-500/10 border-emerald-500/30",
     dot: "bg-emerald-500",
     ring: "ring-emerald-500/40",
@@ -38,6 +42,24 @@ export const CATEGORIES: CategoryMeta[] = [
     badge: "text-amber-300 bg-amber-500/10 border-amber-500/30",
     dot: "bg-amber-500",
     ring: "ring-amber-500/40",
+  },
+  {
+    label: "Quant Finance",
+    emoji: "🤖",
+    description: "Systematic, model-driven investing where math and code generate alpha.",
+    roles: "Systematic / quant investing (AQR, Two Sigma, DE Shaw, Man AHL)",
+    badge: "text-lime-300 bg-lime-500/10 border-lime-500/30",
+    dot: "bg-lime-500",
+    ring: "ring-lime-500/40",
+  },
+  {
+    label: "Venture & Family Capital",
+    emoji: "🌱",
+    description: "Back founders early or steward generational wealth with patient capital.",
+    roles: "Venture capital · Family office (UHNW wealth & direct investing)",
+    badge: "text-teal-300 bg-teal-500/10 border-teal-500/30",
+    dot: "bg-teal-500",
+    ring: "ring-teal-500/40",
   },
   {
     label: "Tech",
@@ -79,16 +101,16 @@ export const CATEGORIES: CategoryMeta[] = [
     label: "Impact & Climate",
     emoji: "🌍",
     description: "Deploy capital and operating talent where profit meets purpose.",
-    roles: "Impact investing (TPG Rise, Bain Double Impact, IFC) · Climate tech & energy transition · Social enterprise / nonprofit leadership",
-    badge: "text-teal-300 bg-teal-500/10 border-teal-500/30",
-    dot: "bg-teal-500",
-    ring: "ring-teal-500/40",
+    roles: "Impact investing (TPG Rise, Bain Double Impact, IFC) · Climate tech & energy transition",
+    badge: "text-green-300 bg-green-500/10 border-green-500/30",
+    dot: "bg-green-500",
+    ring: "ring-green-500/40",
   },
   {
     label: "Media, Sports & Entertainment",
     emoji: "🎬",
     description: "Strategy, operations, and business leadership where culture is the business.",
-    roles: "Sports front office · Sports private equity (Silver Lake, Arctos) · Media & streaming strategy (Disney, Netflix) · Gaming & entertainment",
+    roles: "Sports front office · Sports PE (Silver Lake, Arctos) · Media & streaming strategy (Disney, Netflix) · Gaming",
     badge: "text-orange-300 bg-orange-500/10 border-orange-500/30",
     dot: "bg-orange-500",
     ring: "ring-orange-500/40",
@@ -96,9 +118,39 @@ export const CATEGORIES: CategoryMeta[] = [
 ];
 
 export const CATEGORY_MAP: Record<Category, CategoryMeta> = CATEGORIES.reduce(
-  (acc, c) => {
-    acc[c.label] = c;
-    return acc;
-  },
+  (acc, c) => { acc[c.label] = c; return acc; },
   {} as Record<Category, CategoryMeta>
 );
+
+// Broader groupings for the explore grid
+export const SUPER_CATEGORIES: SuperCategoryMeta[] = [
+  {
+    label: "Finance & Investing",
+    categories: [
+      "Investment Banking",
+      "Private Equity & Investing",
+      "Quant Finance",
+      "Venture & Family Capital",
+    ],
+  },
+  {
+    label: "Consulting",
+    categories: ["Consulting"],
+  },
+  {
+    label: "Tech & Startups",
+    categories: ["Tech", "Startups"],
+  },
+  {
+    label: "Corporate & Industry",
+    categories: ["Corporate & Industry"],
+  },
+  {
+    label: "Lifestyle & Culture",
+    categories: ["Luxury & Lifestyle", "Media, Sports & Entertainment"],
+  },
+  {
+    label: "Impact",
+    categories: ["Impact & Climate"],
+  },
+];

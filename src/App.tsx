@@ -1,36 +1,26 @@
 import { useMemo, useState } from "react";
 import { CAREERS } from "./data/careers";
 import { TopNav } from "./components/TopNav";
-import { FilterBar } from "./components/FilterBar";
 import { CareerGrid } from "./components/CareerGrid";
 import { CareerDetail } from "./components/CareerDetail";
 import { CompareTab } from "./components/CompareTab";
 import { FitQuiz } from "./components/FitQuiz";
 import { RecruitingTable } from "./components/RecruitingTable";
-import type { Career, Category, SortKey, View } from "./types";
+import { SORT_LABELS, SORT_KEYS } from "./lib/format";
+import type { Career, SortKey, View } from "./types";
 
 const MAX_COMPARE = 3;
 
 export default function App() {
   const [view, setView] = useState<View>("explore");
   const [selected, setSelected] = useState<Career | null>(null);
-  const [category, setCategory] = useState<Category | "all">("all");
-  const [exMbbOnly, setExMbbOnly] = useState(false);
   const [sortKey, setSortKey] = useState<SortKey>("comp");
   const [compareIds, setCompareIds] = useState<string[]>([]);
 
-  const filtered = useMemo(() => {
-    let list = CAREERS.filter((c) => {
-      if (category !== "all" && c.category !== category) return false;
-      if (exMbbOnly && c.exMbbFit < 4) return false;
-      return true;
-    });
-    list = [...list].sort((a, b) => {
-      if (sortKey === "exMbbFit") return b.exMbbFit - a.exMbbFit;
-      return b.ratings[sortKey] - a.ratings[sortKey];
-    });
-    return list;
-  }, [category, exMbbOnly, sortKey]);
+  const sorted = useMemo(
+    () => [...CAREERS].sort((a, b) => b.ratings[sortKey] - a.ratings[sortKey]),
+    [sortKey]
+  );
 
   const compareCareers = useMemo(
     () =>
@@ -80,16 +70,25 @@ export default function App() {
           />
         ) : view === "explore" ? (
           <>
-            <FilterBar
-              activeCategory={category}
-              onCategory={setCategory}
-              exMbbOnly={exMbbOnly}
-              onExMbbToggle={() => setExMbbOnly((v) => !v)}
-              sortKey={sortKey}
-              onSort={setSortKey}
-              resultCount={filtered.length}
-            />
-            <CareerGrid careers={filtered} grouped={category === "all"} onSelect={openCareer} />
+            {/* Sort control */}
+            <div className="mb-5 flex items-center justify-between">
+              <p className="text-sm text-slate-500">{CAREERS.length} careers across 9 categories</p>
+              <label className="flex items-center gap-2 text-sm text-slate-400">
+                Sort by
+                <select
+                  value={sortKey}
+                  onChange={(e) => setSortKey(e.target.value as SortKey)}
+                  className="rounded-md border border-slate-700 bg-slate-900 px-2 py-1 text-sm text-slate-200 focus:border-slate-500 focus:outline-none"
+                >
+                  {SORT_KEYS.map((k) => (
+                    <option key={k} value={k}>
+                      {SORT_LABELS[k]}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            <CareerGrid careers={sorted} onSelect={openCareer} />
           </>
         ) : view === "compare" ? (
           <CompareTab
@@ -106,7 +105,7 @@ export default function App() {
 
       <footer className="mx-auto max-w-6xl px-4 py-8 text-center text-xs text-slate-600">
         Compensation ranges are US-market estimates (2025–26) and vary by firm, city, and year.
-        Recruiting data reflects general patterns — always verify with current school career office guidance.
+        Recruiting data reflects general patterns — verify with your school's career office.
       </footer>
     </div>
   );

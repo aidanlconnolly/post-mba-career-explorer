@@ -243,7 +243,7 @@ export const CAREERS: Career[] = [
   {
     id: "venture-capital",
     name: "Venture Capital",
-    category: "Private Equity & Investing",
+    category: "Venture & Family Capital",
     emoji: "🌱",
     tagline: "Back founders early; pattern-match, win deals, help portfolios.",
     exMbbFit: 3,
@@ -402,7 +402,7 @@ export const CAREERS: Career[] = [
   {
     id: "family-office",
     name: "Family Office",
-    category: "Private Equity & Investing",
+    category: "Venture & Family Capital",
     emoji: "🏰",
     tagline: "Manage a UHNW family's investments, direct deals, and philanthropy — PE-style work, longer horizon.",
     exMbbFit: 3,
@@ -1212,6 +1212,82 @@ export const CAREERS: Career[] = [
       internshipNote: "Breakthrough Energy Ventures has a Fellows/internship program. Some climate-tech investors (Prelude, Congruent, Azolla) take MBA interns. Corporate players (Brookfield, NextEra) have structured summer programs.",
       dedicatedChannel: false,
       channelNote: "Still emerging as a formal campus presence. Growing through climate-focused MBA clubs, the Sustainability club circuit, and conferences (Climate Week, CERAWeek). More networked than on-campus today.",
+    },
+  },
+
+  // ─────────────────── Quant Finance ───────────────────
+  {
+    id: "quant-finance",
+    name: "Systematic / Quantitative Investing",
+    category: "Quant Finance",
+    emoji: "🤖",
+    tagline: "Factor models and algo strategies at AQR, Two Sigma, DE Shaw — where math generates alpha.",
+    exMbbFit: 1,
+    exMbbNote:
+      "Rare ex-MBB path. Quant shops hire first for mathematical depth (PhD, CS, Engineering). An MBA layered on top of a quant undergrad helps; a pure consulting résumé without quantitative evidence is a tough sell.",
+    comp: {
+      entryTotal: "$200k–$350k",
+      seniorTotal: "$500k–$1.5M (senior researcher / PM)",
+      ceiling: "$3M–$20M+ for top systematic portfolio managers",
+      notes:
+        "Cash + bonus + performance allocation. Meritocratic and data-driven: your models' P&L speaks for itself. Top PMs earn hedge-fund-level comp with more predictable hours.",
+    },
+    ratings: { comp: 5, workLife: 4, prestige: 5, difficulty: 5 },
+    hoursPerWeek: "45–60 (more predictable than discretionary HF)",
+    dayToDay: [
+      "Build, backtest, and deploy systematic trading factors across equities, macro, or alternative data.",
+      "Run statistical analyses on large datasets; evaluate signal decay, capacity, and turnover.",
+      "Collaborate with engineers to implement strategies in production systems.",
+      "Present research to investment committee; manage a book of factor exposures.",
+    ],
+    pros: [
+      "Better lifestyle than discretionary HF with comparable long-run comp",
+      "Deeply intellectual: statistics, finance, and engineering at once",
+      "Meritocratic — your research either works or it doesn't; politics are limited",
+    ],
+    cons: [
+      "Core research roles are almost entirely PhD/CS/Math pipeline — MBA alone rarely enough",
+      "Very few seats at the elite firms (Two Sigma, DE Shaw, Renaissance)",
+      "Niche and somewhat isolating vs. relationship-driven finance roles",
+    ],
+    breakIn: {
+      timeline: "Off-cycle and networked; AQR and Acadian are most structured for MBA-era candidates.",
+      whoHires: [
+        "AQR Capital Management",
+        "Two Sigma",
+        "DE Shaw",
+        "Man AHL / Man Group",
+        "Winton",
+        "Acadian Asset Management",
+        "Citadel Securities (quant research track)",
+      ],
+      whatHelps: [
+        "Quantitative undergrad (Math, Stats, CS, Physics, Engineering)",
+        "CFA or FRM signals seriousness",
+        "Python / R / C++ proficiency",
+        "Published research or a demonstrable systematic strategy",
+      ],
+      commonBackgrounds: [
+        "PhDs (the dominant path to core research)",
+        "Engineering + MBA",
+        "Quant undergrad + CFA + MBA",
+        "Equity research with a quant / data-science focus",
+      ],
+    },
+    exits: [
+      "Start a systematic fund",
+      "Quant PM at another fund",
+      "Data science / ML at fintech or big tech",
+      "Risk management at a bank or asset manager",
+    ],
+    fit: { money: 85, workLife: 60, risk: 60, structure: 65, impact: 20, analytical: 100 },
+    recruiting: {
+      mbaInternship: false,
+      internshipNote:
+        "Core quant research roles (Jane Street, DE Shaw, Renaissance, Citadel Securities) recruit almost exclusively via PhD/CS programs. AQR and Two Sigma have some MBA-accessible associate tracks but no formal MBA summer internship programs.",
+      dedicatedChannel: false,
+      channelNote:
+        "No formal on-campus MBA channel. AQR and Acadian are the most accessible; they recruit via quant-finance and investment clubs, CFA networks, and direct outreach. Demonstrating quantitative ability beyond the MBA credential is essential.",
     },
   },
 

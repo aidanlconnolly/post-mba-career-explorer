@@ -2,6 +2,8 @@ export type Category =
   | "Consulting"
   | "Private Equity & Investing"
   | "Investment Banking"
+  | "Quant Finance"
+  | "Venture & Family Capital"
   | "Tech"
   | "Startups"
   | "Corporate & Industry"
@@ -9,43 +11,49 @@ export type Category =
   | "Impact & Climate"
   | "Media, Sports & Entertainment";
 
+export type SuperCategory =
+  | "Finance & Investing"
+  | "Consulting"
+  | "Tech & Startups"
+  | "Corporate & Industry"
+  | "Lifestyle & Culture"
+  | "Impact";
+
 export type Comp = {
-  entryTotal: string; // first post-MBA year all-in
-  seniorTotal: string; // ~senior level all-in
-  ceiling: string; // realistic top of the path
-  notes: string; // carry, equity, signing, caveats
+  entryTotal: string;
+  seniorTotal: string;
+  ceiling: string;
+  notes: string;
 };
 
-// All ratings 1–5 (5 = highest)
 export type Ratings = {
-  comp: number; // total earning power
-  workLife: number; // 5 = great balance, 1 = brutal
-  prestige: number; // brand/exit signaling
-  difficulty: number; // 5 = hardest to break into
+  comp: number;      // 5 = highest earning power
+  workLife: number;  // 5 = great balance
+  prestige: number;
+  difficulty: number; // 5 = hardest to break in
 };
 
-// Quiz-matching axes, 0–100 (the "ideal candidate" profile for this path)
 export type FitVector = {
-  money: number; // how much the path optimizes for $
-  workLife: number; // how much lifestyle/balance it offers
-  risk: number; // comp/career volatility & uncertainty
-  structure: number; // defined path & process vs. ambiguity
-  impact: number; // mission / building something meaningful
-  analytical: number; // analytical/quant vs. people/operating
+  money: number;
+  workLife: number;
+  risk: number;
+  structure: number;
+  impact: number;
+  analytical: number;
 };
 
 export type BreakIn = {
-  timeline: string; // when recruiting happens relative to MBA
-  whoHires: string[]; // representative employers
-  whatHelps: string[]; // levers that improve odds
-  commonBackgrounds: string[]; // who tends to land it
+  timeline: string;
+  whoHires: string[];
+  whatHelps: string[];
+  commonBackgrounds: string[];
 };
 
 export type Recruiting = {
-  mbaInternship: boolean; // dedicated summer internship between Y1 and Y2
-  internshipNote: string; // which employers + caveats
-  dedicatedChannel: boolean; // structured post-MBA recruiting pipeline (on-campus or known process)
-  channelNote: string; // details on the channel
+  mbaInternship: boolean;
+  internshipNote: string;
+  dedicatedChannel: boolean;
+  channelNote: string;
 };
 
 export type Career = {
@@ -54,11 +62,11 @@ export type Career = {
   category: Category;
   emoji: string;
   tagline: string;
-  exMbbFit: number; // 1–5, how natural a landing spot for ex-MBB consultants
+  exMbbFit: number;
   exMbbNote: string;
   comp: Comp;
   ratings: Ratings;
-  hoursPerWeek: string; // e.g. "55–70"
+  hoursPerWeek: string;
   dayToDay: string[];
   pros: string[];
   cons: string[];
@@ -68,5 +76,5 @@ export type Career = {
   recruiting: Recruiting;
 };
 
-export type SortKey = "comp" | "workLife" | "prestige" | "difficulty" | "exMbbFit";
+export type SortKey = "comp" | "workLife" | "prestige" | "difficulty";
 export type View = "explore" | "compare" | "quiz" | "recruiting";
