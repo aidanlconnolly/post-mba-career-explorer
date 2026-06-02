@@ -2,8 +2,24 @@ import { useState } from "react";
 import { CAREERS } from "../data/careers";
 import { CATEGORY_MAP } from "../data/categories";
 
-type SortCol = "name" | "category" | "internship" | "channel";
+type SortCol = "name" | "category" | "internship" | "channel" | "comp" | "workLife" | "prestige" | "difficulty";
 type SortDir = "asc" | "desc";
+
+const RATING_COLORS = ["", "bg-red-500", "bg-orange-500", "bg-yellow-500", "bg-lime-500", "bg-emerald-500"];
+
+function RatingPips({ value }: { value: number }) {
+  return (
+    <div className="flex items-center justify-center gap-0.5">
+      {[1, 2, 3, 4, 5].map((i) => (
+        <div
+          key={i}
+          className={`h-1.5 w-4 rounded-sm ${i <= value ? RATING_COLORS[value] : "bg-slate-700"}`}
+        />
+      ))}
+      <span className="ml-1 text-xs text-slate-400">{value}/5</span>
+    </div>
+  );
+}
 
 function Tick({ yes }: { yes: boolean }) {
   return yes ? (
@@ -87,8 +103,7 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
       setSortDir((d) => (d === "asc" ? "desc" : "asc"));
     } else {
       setSortCol(col);
-      // For yes/no columns default desc (Yes first); for text default asc
-      setSortDir(col === "internship" || col === "channel" ? "desc" : "asc");
+      setSortDir(["internship", "channel", "comp", "workLife", "prestige", "difficulty"].includes(col) ? "desc" : "asc");
     }
   }
 
@@ -96,11 +111,12 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
     let cmp = 0;
     if (sortCol === "name") cmp = a.name.localeCompare(b.name);
     else if (sortCol === "category") cmp = a.category.localeCompare(b.category);
-    else if (sortCol === "internship") {
-      cmp = Number(a.recruiting.mbaInternship) - Number(b.recruiting.mbaInternship);
-    } else if (sortCol === "channel") {
-      cmp = Number(a.recruiting.dedicatedChannel) - Number(b.recruiting.dedicatedChannel);
-    }
+    else if (sortCol === "internship") cmp = Number(a.recruiting.mbaInternship) - Number(b.recruiting.mbaInternship);
+    else if (sortCol === "channel") cmp = Number(a.recruiting.dedicatedChannel) - Number(b.recruiting.dedicatedChannel);
+    else if (sortCol === "comp") cmp = a.ratings.comp - b.ratings.comp;
+    else if (sortCol === "workLife") cmp = a.ratings.workLife - b.ratings.workLife;
+    else if (sortCol === "prestige") cmp = a.ratings.prestige - b.ratings.prestige;
+    else if (sortCol === "difficulty") cmp = a.ratings.difficulty - b.ratings.difficulty;
     return sortDir === "asc" ? cmp : -cmp;
   });
 
@@ -142,6 +158,13 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
             <tr className="border-b border-slate-800 bg-slate-900/80">
               <SortHeader col="name" label="Career" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} />
               <SortHeader col="category" label="Category" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} />
+              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
+                Entry Pay
+              </th>
+              <SortHeader col="comp" label="Comp" sub="earning power" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" />
+              <SortHeader col="workLife" label="Work-Life" sub="balance" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" />
+              <SortHeader col="prestige" label="Prestige" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" />
+              <SortHeader col="difficulty" label="Difficulty" sub="to break in" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" />
               <SortHeader
                 col="internship"
                 label="MBA Internship"
@@ -181,6 +204,13 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
                       {catMeta.emoji} {c.category}
                     </span>
                   </td>
+                  <td className="whitespace-nowrap px-4 py-3 text-sm font-semibold text-emerald-400">
+                    {c.comp.entryTotal}
+                  </td>
+                  <td className="px-4 py-3 text-center"><RatingPips value={c.ratings.comp} /></td>
+                  <td className="px-4 py-3 text-center"><RatingPips value={c.ratings.workLife} /></td>
+                  <td className="px-4 py-3 text-center"><RatingPips value={c.ratings.prestige} /></td>
+                  <td className="px-4 py-3 text-center"><RatingPips value={c.ratings.difficulty} /></td>
                   <td className="px-4 py-3 text-center">
                     <Tick yes={c.recruiting.mbaInternship} />
                     <Tooltip text={c.recruiting.internshipNote} />
