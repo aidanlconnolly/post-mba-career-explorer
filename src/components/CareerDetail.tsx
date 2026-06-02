@@ -2,7 +2,15 @@ import type { ReactNode } from "react";
 import { CategoryBadge } from "./Badge";
 import { RatingBar } from "./RatingBar";
 import { RATING_LABELS, stars } from "../lib/format";
-import type { Career } from "../types";
+import { PROGRESSIONS } from "../data/progression";
+import type { Career, ProgressionLikelihood } from "../types";
+
+const LIKELIHOOD_STYLES: Record<ProgressionLikelihood, { badge: string; label: string }> = {
+  High:     { badge: "border-emerald-500/40 bg-emerald-500/10 text-emerald-300", label: "High" },
+  Medium:   { badge: "border-amber-500/40 bg-amber-500/10 text-amber-300",       label: "Medium" },
+  Low:      { badge: "border-rose-500/40 bg-rose-500/10 text-rose-300",           label: "Low" },
+  Variable: { badge: "border-violet-500/40 bg-violet-500/10 text-violet-300",    label: "Variable" },
+};
 
 function List({ items, marker = "•" }: { items: string[]; marker?: string }) {
   return (
@@ -133,6 +141,57 @@ export function CareerDetail({
         <span className="font-medium text-slate-300">💡 Comp notes: </span>
         {career.comp.notes}
       </p>
+
+      {/* Advancement track */}
+      {(() => {
+        const prog = PROGRESSIONS[career.id];
+        if (!prog) return null;
+        const style = LIKELIHOOD_STYLES[prog.likelihood];
+        return (
+          <div className="mt-4 rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-400">
+                Advancement Track
+              </h3>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-slate-500">Likelihood of reaching senior level:</span>
+                <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${style.badge}`}>
+                  {style.label}
+                </span>
+              </div>
+            </div>
+
+            {/* Step track — horizontal scroll on mobile */}
+            <div className="flex items-start gap-0 overflow-x-auto pb-2">
+              {prog.track.map((step, i) => (
+                <div key={i} className="flex items-start">
+                  {/* Step node */}
+                  <div className="flex min-w-[120px] max-w-[160px] flex-col items-center gap-1 px-2 text-center">
+                    <div
+                      className={`h-3 w-3 shrink-0 rounded-full border-2 ${
+                        i === 0
+                          ? "border-slate-400 bg-slate-400"
+                          : "border-slate-600 bg-slate-800"
+                      }`}
+                    />
+                    <span className="text-xs font-medium leading-snug text-slate-200">{step.title}</span>
+                    <span className="text-xs text-slate-500">{step.timeframe}</span>
+                    {step.note && (
+                      <span className="text-xs italic text-slate-600">{step.note}</span>
+                    )}
+                  </div>
+                  {/* Connector line */}
+                  {i < prog.track.length - 1 && (
+                    <div className="mt-1.5 h-px w-6 shrink-0 bg-slate-700" />
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-3 text-sm text-slate-400">{prog.likelihoodNote}</p>
+          </div>
+        );
+      })()}
 
       {/* Body grid */}
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">

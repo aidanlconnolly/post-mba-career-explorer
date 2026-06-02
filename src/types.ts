@@ -78,3 +78,18 @@ export type Career = {
 
 export type SortKey = "comp" | "workLife" | "prestige" | "difficulty";
 export type View = "explore" | "compare" | "quiz" | "recruiting";
+
+// ── Progression ───────────────────────────────────────────────────
+export type ProgressionLikelihood = "High" | "Medium" | "Low" | "Variable";
+
+export type ProgressionStep = {
+  title: string;     // job level / title
+  timeframe: string; // e.g. "Years 0–2"
+  note?: string;     // optional stat, e.g. "~50% make it here"
+};
+
+export type Progression = {
+  track: ProgressionStep[];
+  likelihood: ProgressionLikelihood;
+  likelihoodNote: string; // 1–2 sentences on dynamics & bottlenecks
+};
