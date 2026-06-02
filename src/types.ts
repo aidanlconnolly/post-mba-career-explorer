@@ -5,7 +5,9 @@ export type Category =
   | "Tech"
   | "Startups"
   | "Corporate & Industry"
-  | "Luxury & Lifestyle";
+  | "Luxury & Lifestyle"
+  | "Impact & Climate"
+  | "Media, Sports & Entertainment";
 
 export type Comp = {
   entryTotal: string; // first post-MBA year all-in
@@ -39,6 +41,13 @@ export type BreakIn = {
   commonBackgrounds: string[]; // who tends to land it
 };
 
+export type Recruiting = {
+  mbaInternship: boolean; // dedicated summer internship between Y1 and Y2
+  internshipNote: string; // which employers + caveats
+  dedicatedChannel: boolean; // structured post-MBA recruiting pipeline (on-campus or known process)
+  channelNote: string; // details on the channel
+};
+
 export type Career = {
   id: string;
   name: string;
@@ -56,7 +65,8 @@ export type Career = {
   breakIn: BreakIn;
   exits: string[];
   fit: FitVector;
+  recruiting: Recruiting;
 };
 
 export type SortKey = "comp" | "workLife" | "prestige" | "difficulty" | "exMbbFit";
-export type View = "explore" | "compare" | "quiz";
+export type View = "explore" | "compare" | "quiz" | "recruiting";

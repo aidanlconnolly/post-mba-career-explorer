@@ -4,6 +4,9 @@ import type { Career } from "../types";
 // relevant), reflecting 2025–26 ranges. Carry / equity is called out in `comp.notes`
 // because it dominates long-run outcomes in investing and startup paths. Ratings are
 // 1–5; `fit` axes (0–100) describe the *ideal candidate profile* for the quiz matcher.
+//
+// `recruiting.mbaInternship` = dedicated summer internship between Y1 and Y2 of MBA.
+// `recruiting.dedicatedChannel` = structured on-campus or known post-MBA hiring pipeline.
 
 export const CAREERS: Career[] = [
   // ───────────────────────── Consulting ─────────────────────────
@@ -27,7 +30,7 @@ export const CAREERS: Career[] = [
     hoursPerWeek: "55–75",
     dayToDay: [
       "Lead a workstream on a client case team; structure problems, build the storyline, own a slide module.",
-      "Client interviews, expert calls, and a lot of Excel/Alpha + slide-building.",
+      "Client interviews, expert calls, and a lot of Excel/Airtable + slide-building.",
       "Mon–Thu travel was the norm; now hybrid, but still client-driven and intense.",
       "Manage up to the EM/partner and down to 1–2 analysts; feedback culture is relentless.",
     ],
@@ -52,6 +55,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["PE portfolio operations", "Corporate strategy / Chief of Staff", "Startup operating roles", "Industry GM / VP", "PE/VC investing"],
     fit: { money: 65, workLife: 25, risk: 35, structure: 75, impact: 50, analytical: 80 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "McKinsey, Bain, BCG all run formal Summer Associate programs — the primary post-MBA pipeline. Offers convert at ~80–90%.",
+      dedicatedChannel: true,
+      channelNote: "On-campus at every target business school; sponsored returners bypass recruiting entirely.",
+    },
   },
   {
     id: "boutique-consulting",
@@ -85,6 +94,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["PE / growth equity", "Corporate strategy", "Sector operating roles"],
     fit: { money: 60, workLife: 30, risk: 35, structure: 70, impact: 50, analytical: 80 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "LEK, Oliver Wyman, EY-Parthenon, and Kearney all run summer associate programs at target schools.",
+      dedicatedChannel: true,
+      channelNote: "On-campus recruiting at most top programs; off-cycle hiring is common for sector-specialist roles.",
+    },
   },
 
   // ──────────────── Private Equity & Investing ────────────────
@@ -122,6 +137,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["Stay to Partner", "Portfolio-company C-suite (CFO/COO)", "Start a fund", "Family office"],
     fit: { money: 95, workLife: 20, risk: 55, structure: 60, impact: 35, analytical: 90 },
+    recruiting: {
+      mbaInternship: false,
+      internshipNote: "Megafunds (Blackstone, KKR) run limited summer associate programs but slots are extremely scarce. Most MM funds don't have formal MBA internships — they hire full-time off-cycle.",
+      dedicatedChannel: false,
+      channelNote: "On-cycle (pre-MBA) is the primary pipeline for megafunds. Post-MBA hiring is largely off-cycle and networked; a few MM funds recruit on-campus at M7 schools.",
+    },
   },
   {
     id: "pe-portfolio-ops",
@@ -173,6 +194,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["PortCo COO/CEO", "Move to the deal/value-creation lead", "Independent operating partner", "Corporate transformation leadership"],
     fit: { money: 75, workLife: 45, risk: 45, structure: 55, impact: 55, analytical: 75 },
+    recruiting: {
+      mbaInternship: false,
+      internshipNote: "KKR Capstone, Bain Capital Portfolio Group, and Blackstone Portfolio Ops do NOT run formal MBA summer internship programs. Hiring is year-round and experience-driven (typically post-consulting).",
+      dedicatedChannel: true,
+      channelNote: "While not on-campus in the traditional sense, these groups have well-known post-MBA hiring pipelines. They actively recruit MBB/Tier-2 alumni; outreach via firm contacts is the standard path.",
+    },
   },
   {
     id: "growth-equity",
@@ -206,6 +233,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["Buyout/VC", "Operating roles at portfolio cos", "Start a fund"],
     fit: { money: 85, workLife: 40, risk: 55, structure: 50, impact: 45, analytical: 80 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "General Atlantic and Summit Partners run structured summer associate programs. Others (TA Associates, Insight) have limited internship availability — mostly off-cycle.",
+      dedicatedChannel: true,
+      channelNote: "Larger growth-equity firms (GA, Summit) recruit at M7 schools. Most others are off-cycle and networked; a meaningful number of seats go to MBB alumni.",
+    },
   },
   {
     id: "venture-capital",
@@ -240,6 +273,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["Found a company", "Operating roles", "Raise your own fund"],
     fit: { money: 60, workLife: 60, risk: 70, structure: 35, impact: 65, analytical: 65 },
+    recruiting: {
+      mbaInternship: false,
+      internshipNote: "Formal MBA VC internships are rare. A handful of larger funds (First Round, Bessemer) have offered structured programs, but most 'VC summer roles' are unpaid or through school programs. Not a reliable channel.",
+      dedicatedChannel: false,
+      channelNote: "Almost no VC firms recruit formally on-campus post-MBA. The path is almost entirely networked — thesis-building, cold outreach, demo days, school investment funds, and founder introductions.",
+    },
   },
   {
     id: "hedge-fund",
@@ -274,6 +313,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["Other funds", "Start a fund", "Corporate strategy/IR", "Family office"],
     fit: { money: 90, workLife: 40, risk: 80, structure: 45, impact: 25, analytical: 95 },
+    recruiting: {
+      mbaInternship: false,
+      internshipNote: "Most hedge funds do not run formal MBA internship programs. Some multi-manager platforms (e.g., Citadel, Millennium) have structured programs, but slots are very limited and heavily favor markets backgrounds.",
+      dedicatedChannel: false,
+      channelNote: "Almost no formal on-campus recruiting. Paths in are: specialist headhunters, cold outreach with a pitch, sell-side research → buy-side move, or internal transfer from a banking/PE role at the same firm.",
+    },
   },
   {
     id: "search-fund-eta",
@@ -308,6 +353,104 @@ export const CAREERS: Career[] = [
     },
     exits: ["Sell the company (the payoff)", "Hold & run as owner-operator", "Serial acquirer / holdco", "Back to PE/operating"],
     fit: { money: 70, workLife: 40, risk: 75, structure: 40, impact: 70, analytical: 60 },
+    recruiting: {
+      mbaInternship: false,
+      internshipNote: "No formal internship programs. Some MBA students spend summer advising an active searcher or working with a search fund accelerator — valuable exposure but not a structured pipeline.",
+      dedicatedChannel: false,
+      channelNote: "Entirely self-directed. Stanford GSB and HBS have the deepest ETA ecosystems; school resources (Search Fund Primer, IECA) and alumni networks are the main support structure.",
+    },
+  },
+  {
+    id: "asset-management",
+    name: "Asset / Investment Management",
+    category: "Private Equity & Investing",
+    emoji: "🏛️",
+    tagline: "Manage long-only or institutional capital — research-driven, steadier than HF.",
+    exMbbFit: 2,
+    exMbbNote:
+      "Markets-oriented; favors equity-research/finance backgrounds. Ex-MBB more often enter via corporate-side or product/strategy roles at asset managers.",
+    comp: {
+      entryTotal: "$175k–$300k",
+      seniorTotal: "$400k–$800k (senior analyst / PM)",
+      ceiling: "$1M–$5M+ as a senior PM",
+      notes: "Steadier and better lifestyle than hedge funds; comp scales with AUM and performance.",
+    },
+    ratings: { comp: 4, workLife: 4, prestige: 4, difficulty: 4 },
+    hoursPerWeek: "45–60",
+    dayToDay: [
+      "Cover a sector: build models, meet management teams, write research.",
+      "Pitch ideas to PMs; help construct and monitor portfolios.",
+      "Long-term, fundamentals-driven thinking.",
+    ],
+    pros: ["Great lifestyle for the comp", "Intellectual, research-driven work", "Long-term horizon"],
+    cons: ["Active management under fee pressure (passive shift)", "Slower hiring", "Markets backgrounds favored"],
+    breakIn: {
+      timeline: "On-campus (some programs) + networked.",
+      whoHires: ["Fidelity", "Capital Group", "T. Rowe Price", "Wellington", "BlackRock"],
+      whatHelps: ["A strong stock pitch", "CFA", "Sector knowledge", "Research experience"],
+      commonBackgrounds: ["Equity research", "Banking", "Industry experts"],
+    },
+    exits: ["Senior PM", "Hedge fund", "Corporate strategy/IR", "Family office"],
+    fit: { money: 75, workLife: 65, risk: 50, structure: 55, impact: 30, analytical: 90 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Fidelity, T. Rowe Price, Capital Group, and Wellington all run structured MBA summer associate programs for equity research/investment roles.",
+      dedicatedChannel: true,
+      channelNote: "On-campus at select schools (especially HBS, Wharton, Columbia for investments). CFA + investment club involvement signals are key differentiators.",
+    },
+  },
+  {
+    id: "family-office",
+    name: "Family Office",
+    category: "Private Equity & Investing",
+    emoji: "🏰",
+    tagline: "Manage a UHNW family's investments, direct deals, and philanthropy — PE-style work, longer horizon.",
+    exMbbFit: 3,
+    exMbbNote:
+      "Good fit for ex-MBB who want deal/investing exposure with better WLB and fewer politics than institutional PE. Almost entirely relationship-driven entry.",
+    comp: {
+      entryTotal: "$175k–$280k",
+      seniorTotal: "$300k–$600k (Director / CIO-track)",
+      ceiling: "$1M–$3M+ as CIO or principal of the family",
+      notes:
+        "Comp varies enormously — a $500M SFO pays very differently from a $20B MFO. Co-investment / deal carry is the long-run upside.",
+    },
+    ratings: { comp: 4, workLife: 4, prestige: 3, difficulty: 4 },
+    hoursPerWeek: "45–60",
+    dayToDay: [
+      "Evaluate direct investments (real estate, private deals, co-invests) and LP commitments.",
+      "Manage asset allocation, liquidity, and risk across a complex balance sheet.",
+      "Support philanthropy, estate planning, and next-generation education where relevant.",
+      "Small team — high ownership and broad mandate.",
+    ],
+    pros: [
+      "PE-like work with far better lifestyle",
+      "Long-term, patient capital — no fund-cycle pressure",
+      "Deep trust relationship with the principal family",
+    ],
+    cons: [
+      "Almost entirely relationship-driven entry (very hard to cold-apply)",
+      "Comp and mandate vary wildly by family",
+      "Can become siloed / limited career portability",
+    ],
+    breakIn: {
+      timeline: "Networked / referral — no standard recruiting cycle.",
+      whoHires: ["Single-family offices", "Multi-family offices (Bessemer, Northern Trust)", "Prominent family holding companies"],
+      whatHelps: [
+        "Personal connection to the family or a trusted advisor",
+        "PE/investing background",
+        "Discretion and trust-building ability",
+      ],
+      commonBackgrounds: ["PE", "Banking", "Consulting (rare but growing)", "Wealth management"],
+    },
+    exits: ["Stay as CIO", "Principal investing / start a fund", "Return to PE", "Entrepreneurship backed by the family"],
+    fit: { money: 75, workLife: 65, risk: 40, structure: 50, impact: 35, analytical: 80 },
+    recruiting: {
+      mbaInternship: false,
+      internshipNote: "Family offices do not run formal MBA internship programs. Occasionally a school's alumni network surfaces a summer project, but there is no systematic pipeline.",
+      dedicatedChannel: false,
+      channelNote: "No on-campus recruiting. Entry is exclusively through personal introductions — from PE/banking colleagues, wealth managers, or classmates with family connections.",
+    },
   },
 
   // ──────────────────── Investment Banking ────────────────────
@@ -343,6 +486,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["Private equity", "Corporate development", "Growth equity", "Corporate finance/strategy"],
     fit: { money: 90, workLife: 10, risk: 40, structure: 75, impact: 25, analytical: 85 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Summer Associate → full-time is the standard pipeline at all major banks (Goldman, JPMorgan, Morgan Stanley, Evercore, Centerview, Lazard). Offer rates are high for strong performers.",
+      dedicatedChannel: true,
+      channelNote: "Heavily on-campus at every target MBA program. One of the most structured MBA recruiting pipelines that exists — information sessions, coffee chats, and superdays are all formalized.",
+    },
   },
 
   // ───────────────────────── Tech ─────────────────────────
@@ -378,6 +527,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["VP Product / CPO", "Startup founder", "VC", "GM roles"],
     fit: { money: 65, workLife: 65, risk: 40, structure: 55, impact: 70, analytical: 70 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Google RPM, Meta RPM, Microsoft PM, Amazon PM, and Uber all run formal MBA PM internship programs. Some of the most competitive internships in tech — often accept single-digit percentages of applicants.",
+      dedicatedChannel: true,
+      channelNote: "On-campus at top MBA programs. PM recruiting is extremely structured with multiple rounds including product case interviews. MBA-targeted PM programs (RPM, APM equivalents) are a major pipeline.",
+    },
   },
   {
     id: "tech-bizops",
@@ -411,6 +566,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["GM / VP Operations", "Product", "COO track", "Startup founder/operator"],
     fit: { money: 65, workLife: 60, risk: 45, structure: 45, impact: 65, analytical: 80 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Uber (BizOps), DoorDash (S&O), Airbnb, and many growth-stage companies hire MBA interns for BizOps/S&O roles in the summer.",
+      dedicatedChannel: true,
+      channelNote: "Many tech companies recruit on-campus or via MBB alumni networks. Not as formalized as consulting, but well-worn path — especially at late-stage startups staffing up their strategy functions.",
+    },
   },
   {
     id: "tech-gm-rotational",
@@ -444,6 +605,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["VP/GM", "COO track", "Startup operating leadership"],
     fit: { money: 65, workLife: 45, risk: 40, structure: 65, impact: 60, analytical: 65 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Amazon hires MBA interns for Pathways-type general manager and senior PM roles. Google and Walmart also run MBA-targeted summer programs.",
+      dedicatedChannel: true,
+      channelNote: "Amazon Pathways, Google's MBA recruiting, and Walmart Global Tech all have defined on-campus presences. A clear, well-documented recruiting process.",
+    },
   },
 
   // ───────────────────────── Startups ─────────────────────────
@@ -480,6 +647,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["Acquisition / IPO", "Wind down → operating or VC role", "Serial founder"],
     fit: { money: 70, workLife: 10, risk: 95, structure: 15, impact: 90, analytical: 50 },
+    recruiting: {
+      mbaInternship: false,
+      internshipNote: "N/A — you are the employer. MBA summer is often used to validate an idea, join an accelerator (YC, Techstars), or find a co-founder.",
+      dedicatedChannel: false,
+      channelNote: "No channel. School resources (startup labs, entrepreneur clubs, alumni VC networks) and accelerator programs are the ecosystem — not a recruiting pipeline.",
+    },
   },
   {
     id: "early-stage-operator",
@@ -513,6 +686,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["Found your own company", "Senior operator at the next stage", "VC", "Bigger-company GM/PM"],
     fit: { money: 50, workLife: 25, risk: 80, structure: 25, impact: 85, analytical: 65 },
+    recruiting: {
+      mbaInternship: false,
+      internshipNote: "No formal programs. Some MBA students work with a seed-stage startup during summer through VC partner intros or school entrepreneur networks — valuable, but not systematized.",
+      dedicatedChannel: false,
+      channelNote: "Almost no formal recruiting. Roles are found through VC connections, founder referrals, LinkedIn, and school startup communities. Operators get hired when there's a match, not a cycle.",
+    },
   },
   {
     id: "growth-stage-operator",
@@ -546,6 +725,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["VP/C-suite at startups", "Found a company", "PE operating roles", "Big-tech leadership"],
     fit: { money: 60, workLife: 45, risk: 60, structure: 40, impact: 75, analytical: 65 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Some well-funded Series B/C startups deliberately hire MBA interns for strategy, ops, or commercial roles. Not formalized, but more common than at seed stage — especially at VC-backed unicorns.",
+      dedicatedChannel: false,
+      channelNote: "A minority recruit on-campus. Most roles are found via VC firm referrals, executive recruiters specializing in growth-stage, or direct outreach.",
+    },
   },
   {
     id: "eir-fir",
@@ -579,6 +764,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["Found a company (the goal)", "Join a portfolio company as exec", "Move into VC"],
     fit: { money: 55, workLife: 45, risk: 80, structure: 25, impact: 85, analytical: 55 },
+    recruiting: {
+      mbaInternship: false,
+      internshipNote: "No formal internship programs. EIR/FIR slots are reserved for people with genuine operating or founding experience — not a typical MBA entry point.",
+      dedicatedChannel: false,
+      channelNote: "No recruiting channel. Requires a warm introduction to the VC or studio partners, typically through a prior operating relationship or shared portfolio company.",
+    },
   },
 
   // ─────────────────── Corporate & Industry ───────────────────
@@ -614,6 +805,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["Business-unit GM / P&L leadership", "Corp dev", "COO track", "Back to consulting (Partner track)"],
     fit: { money: 55, workLife: 70, risk: 30, structure: 65, impact: 55, analytical: 75 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Many Fortune 500s (Amazon, Walmart, Microsoft, major industrials and healthcare companies) hire MBA strategy interns. Tech companies are especially active recruiters.",
+      dedicatedChannel: true,
+      channelNote: "On-campus at most programs. Common 'catch-all' path for MBAs who want corporate exposure; many companies have explicit MBA strategy hiring tracks.",
+    },
   },
   {
     id: "corporate-development",
@@ -647,6 +844,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["VP Corp Dev", "PE/growth", "Business-unit leadership", "CFO track"],
     fit: { money: 70, workLife: 55, risk: 35, structure: 65, impact: 45, analytical: 85 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Tech companies (Google, Microsoft, Salesforce, Amazon) are the most active hirers of MBA corp dev interns. Less common in non-tech industries, where roles tend to be full-time and experienced-hire.",
+      dedicatedChannel: true,
+      channelNote: "On-campus at top programs, particularly for tech. Outside tech, mostly networked through banking and PE alumni who have moved in-house.",
+    },
   },
   {
     id: "general-management-ldp",
@@ -680,6 +883,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["Business-unit GM", "VP Operations", "COO/CEO track", "Industry leadership"],
     fit: { money: 45, workLife: 65, risk: 30, structure: 75, impact: 60, analytical: 55 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Most Fortune 500 LDPs have formal MBA internship components — GE, J&J, PepsiCo, Walmart, and others run well-established summer rotational programs that feed directly into full-time offers.",
+      dedicatedChannel: true,
+      channelNote: "Heavily on-campus. LDP recruiting is one of the most formalized post-MBA pipelines — companies sponsor school events, connect with clubs, and run multi-round on-campus processes.",
+    },
   },
   {
     id: "cpg-brand-management",
@@ -713,6 +922,90 @@ export const CAREERS: Career[] = [
     },
     exits: ["VP Marketing / CMO", "Tech product marketing/GM", "Startup growth leadership", "DTC founder"],
     fit: { money: 45, workLife: 70, risk: 30, structure: 70, impact: 55, analytical: 55 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "P&G, Unilever, PepsiCo, Mars, and Colgate all run among the most formalized MBA brand management internship programs in existence — full summer rotational experiences with near-automatic full-time pipelines.",
+      dedicatedChannel: true,
+      channelNote: "On-campus at virtually every target school. CPG brand management recruiting is among the most standardized of any industry — cases, interviews, and offers follow a predictable calendar.",
+    },
+  },
+  {
+    id: "real-estate-pe",
+    name: "Real Estate Private Equity / Development",
+    category: "Corporate & Industry",
+    emoji: "🏙️",
+    tagline: "Invest in or develop properties — tangible assets, deal-driven returns.",
+    exMbbFit: 2,
+    exMbbNote:
+      "Specialized; favors prior real estate or finance experience. Strategy consultants occasionally pivot via REPE or developer strategy roles.",
+    comp: {
+      entryTotal: "$175k–$300k",
+      seniorTotal: "$350k–$700k incl. promote",
+      ceiling: "$2M–$10M+ via promote/carry over time",
+      notes: "Promote (RE's version of carry) drives senior wealth; development can also yield large equity stakes.",
+    },
+    ratings: { comp: 4, workLife: 4, prestige: 3, difficulty: 4 },
+    hoursPerWeek: "50–65",
+    dayToDay: [
+      "Underwrite acquisitions/developments; build cash-flow models.",
+      "Manage capital raising, debt, and partner/JV relationships.",
+      "Asset-manage the portfolio; track tangible projects to completion.",
+    ],
+    pros: ["Tangible assets you can see", "Strong comp + promote upside", "Better hours than buyout PE"],
+    cons: ["Cyclical, rate-sensitive", "Requires specialized knowledge", "Geographically concentrated"],
+    breakIn: {
+      timeline: "Networked + on-campus at programs with RE strength.",
+      whoHires: ["Blackstone RE", "Starwood", "Hines", "Related", "Brookfield"],
+      whatHelps: ["RE finance/modeling", "Market knowledge", "Capital relationships"],
+      commonBackgrounds: ["RE finance", "Banking", "Development", "Some consulting"],
+    },
+    exits: ["RE fund Partner", "Own development", "Family office", "REIT leadership"],
+    fit: { money: 80, workLife: 55, risk: 50, structure: 55, impact: 40, analytical: 80 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Blackstone Real Estate and some larger platforms (Brookfield, Hines, Related) run MBA internship programs. More common at Columbia, Wharton, MIT, and schools with strong RE programs.",
+      dedicatedChannel: true,
+      channelNote: "On-campus at schools with real estate concentrations. The REPE world is smaller and tighter than buyout — networking through school RE clubs and alumni is essential.",
+    },
+  },
+  {
+    id: "healthcare-pharma-commercial",
+    name: "Healthcare / Pharma Commercial Leadership",
+    category: "Corporate & Industry",
+    emoji: "⚕️",
+    tagline: "Commercial strategy, marketing, and GM roles in pharma, biotech, and medtech.",
+    exMbbFit: 4,
+    exMbbNote:
+      "Strong fit for ex-MBB with healthcare casework: commercial strategy, market access, and product launches reward the consulting toolkit.",
+    comp: {
+      entryTotal: "$150k–$220k",
+      seniorTotal: "$300k–$550k (Director / Sr. Director)",
+      ceiling: "$1M–$3M+ as VP/GM or in biotech equity outcomes",
+      notes: "Base + bonus + equity (esp. biotech); large, stable industry with clear leadership ladders.",
+    },
+    ratings: { comp: 4, workLife: 4, prestige: 3, difficulty: 3 },
+    hoursPerWeek: "45–60",
+    dayToDay: [
+      "Own commercial strategy, pricing/market access, and product launches.",
+      "Coordinate across medical, regulatory, and sales.",
+      "Forecast markets and lead brand/portfolio decisions.",
+    ],
+    pros: ["Mission-driven, impactful work", "Stable, large industry", "Good lifestyle + comp"],
+    cons: ["Regulatory complexity", "Slower-moving than tech", "Less prestige-glamour"],
+    breakIn: {
+      timeline: "On-campus + networked; common ex-consulting move with healthcare experience.",
+      whoHires: ["Pfizer", "J&J", "Roche/Genentech", "Novartis", "Medtronic", "biotechs"],
+      whatHelps: ["Healthcare consulting/casework", "Scientific literacy", "Commercial instinct"],
+      commonBackgrounds: ["Healthcare consulting", "Clinical/science", "Marketing", "Banking (biotech)"],
+    },
+    exits: ["VP Commercial / GM", "Biotech C-suite", "Healthcare PE/VC", "Digital health startup"],
+    fit: { money: 60, workLife: 65, risk: 35, structure: 65, impact: 75, analytical: 70 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Pfizer, J&J, Novartis, Roche/Genentech, and Medtronic all run formal MBA summer associate programs in commercial, strategy, and marketing functions. One of the most active industries for MBA internship hiring.",
+      dedicatedChannel: true,
+      channelNote: "On-campus at most programs; pharma and medtech companies are consistent MBA recruiters. Companies with healthcare MBA rotational leadership programs (J&J LHLDP, Pfizer MBA programs) are especially active.",
+    },
   },
 
   // ─────────────────── Luxury & Lifestyle ───────────────────
@@ -749,6 +1042,12 @@ export const CAREERS: Career[] = [
     },
     exits: ["Maison President / Global brand GM", "Luxury e-commerce / DTC leadership", "Consumer PE/VC", "Found a brand"],
     fit: { money: 45, workLife: 60, risk: 35, structure: 60, impact: 60, analytical: 55 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "LVMH runs a specific MBA program (LVMH Atelier/LIFE) with structured summer internships. Richemont and Kering also have MBA pipelines, particularly at Wharton, HBS, and INSEAD.",
+      dedicatedChannel: true,
+      channelNote: "LVMH, Richemont, and Kering all recruit on-campus at select programs (often INSEAD, Wharton, HBS). The luxury circuit is tight — school luxury clubs and alumni are important connectors.",
+    },
   },
   {
     id: "luxury-hospitality",
@@ -783,104 +1082,261 @@ export const CAREERS: Career[] = [
     },
     exits: ["Flagship/Regional GM", "Brand president / corporate SVP", "Hospitality real estate / development", "Luxury startup/DTC"],
     fit: { money: 35, workLife: 50, risk: 35, structure: 60, impact: 65, analytical: 45 },
+    recruiting: {
+      mbaInternship: false,
+      internshipNote: "Marriott International runs some MBA corporate internships (strategy, development, brand management) but the programs are limited. Most luxury hospitality entry is through full-time hiring, not summer internships.",
+      dedicatedChannel: false,
+      channelNote: "Limited on-campus presence. Some schools with hospitality programs (Cornell, Michigan) see more structured outreach. Corporate-side roles (strategy, development) are more MBA-accessible than property operations.",
+    },
   },
+
+  // ─────────────────── Impact & Climate ───────────────────
   {
-    id: "real-estate-pe",
-    name: "Real Estate Private Equity / Development",
-    category: "Corporate & Industry",
-    emoji: "🏙️",
-    tagline: "Invest in or develop properties — tangible assets, deal-driven returns.",
-    exMbbFit: 2,
-    exMbbNote:
-      "Specialized; favors prior real estate or finance experience. Strategy consultants occasionally pivot via REPE or developer strategy roles.",
-    comp: {
-      entryTotal: "$175k–$300k",
-      seniorTotal: "$350k–$700k incl. promote",
-      ceiling: "$2M–$10M+ via promote/carry over time",
-      notes: "Promote (RE's version of carry) drives senior wealth; development can also yield large equity stakes.",
-    },
-    ratings: { comp: 4, workLife: 4, prestige: 3, difficulty: 4 },
-    hoursPerWeek: "50–65",
-    dayToDay: [
-      "Underwrite acquisitions/developments; build cash-flow models.",
-      "Manage capital raising, debt, and partner/JV relationships.",
-      "Asset-manage the portfolio; track tangible projects to completion.",
-    ],
-    pros: ["Tangible assets you can see", "Strong comp + promote upside", "Better hours than buyout PE"],
-    cons: ["Cyclical, rate-sensitive", "Requires specialized knowledge", "Geographically concentrated"],
-    breakIn: {
-      timeline: "Networked + on-campus at programs with RE strength.",
-      whoHires: ["Blackstone RE", "Starwood", "Hines", "Related", "Brookfield"],
-      whatHelps: ["RE finance/modeling", "Market knowledge", "Capital relationships"],
-      commonBackgrounds: ["RE finance", "Banking", "Development", "Some consulting"],
-    },
-    exits: ["RE fund Partner", "Own development", "Family office", "REIT leadership"],
-    fit: { money: 80, workLife: 55, risk: 50, structure: 55, impact: 40, analytical: 80 },
-  },
-  {
-    id: "asset-management",
-    name: "Asset / Investment Management",
-    category: "Private Equity & Investing",
-    emoji: "🏛️",
-    tagline: "Manage long-only or institutional capital — research-driven, steadier than HF.",
-    exMbbFit: 2,
-    exMbbNote:
-      "Markets-oriented; favors equity-research/finance backgrounds. Ex-MBB more often enter via corporate-side or product/strategy roles at asset managers.",
-    comp: {
-      entryTotal: "$175k–$300k",
-      seniorTotal: "$400k–$800k (senior analyst / PM)",
-      ceiling: "$1M–$5M+ as a senior PM",
-      notes: "Steadier and better lifestyle than hedge funds; comp scales with AUM and performance.",
-    },
-    ratings: { comp: 4, workLife: 4, prestige: 4, difficulty: 4 },
-    hoursPerWeek: "45–60",
-    dayToDay: [
-      "Cover a sector: build models, meet management teams, write research.",
-      "Pitch ideas to PMs; help construct and monitor portfolios.",
-      "Long-term, fundamentals-driven thinking.",
-    ],
-    pros: ["Great lifestyle for the comp", "Intellectual, research-driven work", "Long-term horizon"],
-    cons: ["Active management under fee pressure (passive shift)", "Slower hiring", "Markets backgrounds favored"],
-    breakIn: {
-      timeline: "On-campus (some programs) + networked.",
-      whoHires: ["Fidelity", "Capital Group", "T. Rowe Price", "Wellington", "BlackRock"],
-      whatHelps: ["A strong stock pitch", "CFA", "Sector knowledge", "Research experience"],
-      commonBackgrounds: ["Equity research", "Banking", "Industry experts"],
-    },
-    exits: ["Senior PM", "Hedge fund", "Corporate strategy/IR", "Family office"],
-    fit: { money: 75, workLife: 65, risk: 50, structure: 55, impact: 30, analytical: 90 },
-  },
-  {
-    id: "healthcare-pharma-commercial",
-    name: "Healthcare / Pharma Commercial Leadership",
-    category: "Corporate & Industry",
-    emoji: "⚕️",
-    tagline: "Commercial strategy, marketing, and GM roles in pharma, biotech, and medtech.",
+    id: "impact-investing",
+    name: "Impact Investing",
+    category: "Impact & Climate",
+    emoji: "🌍",
+    tagline: "Market-rate returns with a measurable social or environmental thesis — TPG Rise, Bain Double Impact, KKR Global Impact.",
     exMbbFit: 4,
     exMbbNote:
-      "Strong fit for ex-MBB with healthcare casework: commercial strategy, market access, and product launches reward the consulting toolkit.",
+      "Strong fit for ex-MBB, especially those with healthcare, education, or sustainability casework. The diligence framework is essentially strategy consulting applied to mission-driven companies.",
     comp: {
-      entryTotal: "$150k–$220k",
-      seniorTotal: "$300k–$550k (Director / Sr. Director)",
-      ceiling: "$1M–$3M+ as VP/GM or in biotech equity outcomes",
-      notes: "Base + bonus + equity (esp. biotech); large, stable industry with clear leadership ladders.",
+      entryTotal: "$175k–$280k",
+      seniorTotal: "$350k–$700k (Principal/Director incl. carry)",
+      ceiling: "$2M–$6M+ as a Partner/GP of a dedicated impact fund",
+      notes:
+        "Comp is generally 20–30% below traditional PE/growth equity at the same level. The 'impact premium' is paid in purpose; senior carry is real and growing.",
     },
-    ratings: { comp: 4, workLife: 4, prestige: 3, difficulty: 3 },
+    ratings: { comp: 3, workLife: 3, prestige: 4, difficulty: 4 },
+    hoursPerWeek: "50–65",
+    dayToDay: [
+      "Evaluate investments: build financial models + ESG/impact measurement frameworks alongside standard deal diligence.",
+      "Work with portfolio companies to hit both financial and impact KPIs (IRIS+, SDGs).",
+      "Engage LPs (foundations, endowments, DFIs) who care deeply about impact reporting.",
+      "Navigate the tension between return maximization and mission fidelity.",
+    ],
+    pros: [
+      "Meaningful work: your deals directly advance climate, education, or health outcomes",
+      "Fast-growing field — AUM in impact is doubling every few years",
+      "PE-quality skills with a purpose narrative for LPs and recruits",
+    ],
+    cons: [
+      "Lower cash comp than traditional PE",
+      "Impact measurement adds complexity and friction to deals",
+      "Risk of 'greenwashing' reputational harm if fund doesn't walk the talk",
+    ],
+    breakIn: {
+      timeline: "Mix of on-campus (TPG Rise, Bain Double Impact) and networked (DFIs, fund-of-funds).",
+      whoHires: [
+        "TPG Rise Fund",
+        "Bain Capital Double Impact",
+        "KKR Global Impact",
+        "Bridges Ventures",
+        "IFC / DFC / CDC (development finance)",
+        "LeapFrog Investments",
+        "Owl Ventures (edtech)",
+      ],
+      whatHelps: [
+        "Prior consulting/investing experience with an impact angle",
+        "Fluency in ESG metrics (IRIS+, B Corp, SDGs)",
+        "Domain expertise: climate, health, financial inclusion, education",
+        "Mission credibility — not just 'pivot-to-purpose' storytelling",
+      ],
+      commonBackgrounds: ["MBB with healthcare/sustainability work", "PE/growth equity", "Development finance", "Policy/NGO + MBA"],
+    },
+    exits: ["Traditional PE/GE (impact cred is additive)", "DFI leadership", "Social enterprise C-suite", "Policy / ESG advisory"],
+    fit: { money: 55, workLife: 50, risk: 45, structure: 55, impact: 90, analytical: 75 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "TPG Rise Fund and Bain Capital Double Impact run summer associate programs. Development finance institutions (IFC, DFC) have formal MBA summer fellowships. Programs are competitive and small but structured.",
+      dedicatedChannel: true,
+      channelNote: "Growing on-campus presence at M7 schools, driven by student demand. TPG, Bain Double Impact, and several DFIs recruit directly. Impact-focused MBA clubs (Net Impact) are key connectors.",
+    },
+  },
+  {
+    id: "climate-tech",
+    name: "Climate Tech & Energy Transition",
+    category: "Impact & Climate",
+    emoji: "⚡",
+    tagline: "VC, PE, and operator roles building the decarbonized economy — energy, mobility, food, and materials.",
+    exMbbFit: 3,
+    exMbbNote:
+      "Growing fit as the sector matures. Ex-MBB with energy, industrials, or infrastructure casework have an edge; operator roles at climate startups increasingly pull from consulting.",
+    comp: {
+      entryTotal: "$150k–$260k (operator); $175k–$300k (investor)",
+      seniorTotal: "$300k–$600k+ depending on firm/stage",
+      ceiling: "Carry/equity-driven; transformative if you back or operate a category winner",
+      notes:
+        "Comp lags traditional PE/tech slightly; equity upside is the pitch. Climate tech is capital-intensive so senior equity can be meaningful.",
+    },
+    ratings: { comp: 3, workLife: 4, prestige: 4, difficulty: 4 },
+    hoursPerWeek: "50–65",
+    dayToDay: [
+      "Investor track: evaluate climate-tech deals (solar, battery, grid, ag-tech, carbon markets), write theses, manage PortCos.",
+      "Operator track: join a funded climate startup as BizOps, Head of Strategy, or commercial lead.",
+      "Navigate long technology development cycles and policy uncertainty.",
+      "Engage with corporate offtakers, DOE/NREL programs, and infrastructure capital.",
+    ],
+    pros: [
+      "Front-row seat to a $5T+ sector transition",
+      "Increasingly well-funded — Breakthrough Energy, Tiger, and traditional PE all playing",
+      "Mission clarity: tangible environmental impact",
+    ],
+    cons: [
+      "Technology and policy risk — many bets take a decade",
+      "Talent market is hot and valuations can be frothy",
+      "Less defined career ladder than traditional paths",
+    ],
+    breakIn: {
+      timeline: "Mix of on-campus (climate VC/PE summer programs) and networked (startup operator roles).",
+      whoHires: [
+        "Breakthrough Energy Ventures / Ventures Fellows",
+        "Third Derivative",
+        "Prelude Ventures",
+        "Brookfield Renewable",
+        "NextEra Energy Resources",
+        "Climate-tech startups (Form Energy, Commonwealth Fusion, Xpansiv)",
+      ],
+      whatHelps: [
+        "Energy/industrials/infrastructure background or coursework",
+        "Technical literacy (not engineering, but able to evaluate hardware/science claims)",
+        "Policy fluency (IRA, LCFS, EU taxonomy)",
+        "Network in the climate-tech ecosystem",
+      ],
+      commonBackgrounds: ["Consulting (energy/infra practice)", "Banking (infrastructure/project finance)", "Engineering + MBA", "Policy/government"],
+    },
+    exits: ["Climate tech VC/PE Partner", "Portfolio company C-suite", "Corporate sustainability/ESG leadership", "Government energy policy"],
+    fit: { money: 50, workLife: 55, risk: 60, structure: 40, impact: 95, analytical: 75 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Breakthrough Energy Ventures has a Fellows/internship program. Some climate-tech investors (Prelude, Congruent, Azolla) take MBA interns. Corporate players (Brookfield, NextEra) have structured summer programs.",
+      dedicatedChannel: false,
+      channelNote: "Still emerging as a formal campus presence. Growing through climate-focused MBA clubs, the Sustainability club circuit, and conferences (Climate Week, CERAWeek). More networked than on-campus today.",
+    },
+  },
+
+  // ────────── Media, Sports & Entertainment ──────────
+  {
+    id: "sports-business",
+    name: "Sports Business (Front Office & Sports PE)",
+    category: "Media, Sports & Entertainment",
+    emoji: "🏆",
+    tagline: "Team strategy, analytics, and operations roles — plus the PE firms now buying leagues.",
+    exMbbFit: 3,
+    exMbbNote:
+      "Passion-driven but increasingly analytical. Ex-MBB consultants are landing in team strategy, sports PE (Silver Lake, Arctos), and league business development. Network and genuine sports knowledge are table stakes.",
+    comp: {
+      entryTotal: "$80k–$160k (front office); $200k–$350k (sports PE)",
+      seniorTotal: "$200k–$500k (GM-track / sports PE principal)",
+      ceiling: "$1M–$10M+ as a team president, league executive, or sports PE partner",
+      notes:
+        "Front-office roles notoriously underpay relative to team revenues — you pay a 'passion premium.' Sports PE (Silver Lake, Arctos, Dyal) pays comparably to MM buyout.",
+    },
+    ratings: { comp: 3, workLife: 3, prestige: 5, difficulty: 5 },
+    hoursPerWeek: "50–70 (event days are long; off-season is quieter)",
+    dayToDay: [
+      "Front office: business strategy, analytics, revenue (sponsorships, media rights, ticketing), and team operations.",
+      "Analytics: player evaluation, game-plan modeling, contract optimization for GMs.",
+      "Sports PE: evaluate team/league minority-stake acquisitions, media rights deals, and stadium infrastructure.",
+      "League offices: business development, media rights negotiation, global expansion.",
+    ],
+    pros: [
+      "Combine professional passion with business skills",
+      "Sports PE is a genuine, well-compensated new career track",
+      "High-profile brand and network (owners, athletes, media)",
+    ],
+    cons: [
+      "Front-office comp is genuinely below market — you subsidize the product you love",
+      "Very competitive and relationship-dependent",
+      "Job security tied to team performance; org shake-ups are frequent",
+    ],
+    breakIn: {
+      timeline: "Mix of on-campus (select leagues/sports PE), networked, and sports-specific MBA programs.",
+      whoHires: [
+        "NBA, NFL, Premier League, and MLB front offices",
+        "Silver Lake (sports practice)",
+        "Arctos Partners",
+        "Dyal HomeCourt / Blue Owl Sports",
+        "Endeavor / WME",
+        "NBC/CBS/ESPN (media-rights strategy)",
+      ],
+      whatHelps: [
+        "Genuine sports knowledge and network",
+        "Prior sports industry experience or analytics",
+        "MIT Sloan Sports Analytics Conference presence",
+        "MBA programs with sports business tracks (Wharton, Michigan, Columbia)",
+      ],
+      commonBackgrounds: ["Consulting with sports clients", "Banking (media/sports M&A)", "Sports analytics", "Former athletes"],
+    },
+    exits: ["Team president / GM", "Sports PE partner", "League executive", "Sports media / broadcasting strategy", "Sports-tech founder"],
+    fit: { money: 45, workLife: 45, risk: 50, structure: 45, impact: 55, analytical: 70 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Several NBA, NFL, and MLS franchises run structured MBA summer programs. Silver Lake's sports practice and Arctos Partners occasionally take MBA interns. MIT Sloan and Wharton have the most direct pipelines.",
+      dedicatedChannel: false,
+      channelNote: "No universal on-campus channel. Recruiting is fragmented: MIT Sloan Sports Analytics Conference, Wharton Sports Business Initiative, LinkedIn outreach, and alumni networks at specific schools are the pathways.",
+    },
+  },
+  {
+    id: "media-entertainment-strategy",
+    name: "Media & Entertainment Strategy",
+    category: "Media, Sports & Entertainment",
+    emoji: "🎬",
+    tagline: "Corporate strategy and GM roles at Disney, Netflix, gaming companies, and talent agencies.",
+    exMbbFit: 3,
+    exMbbNote:
+      "Growing fit as streaming, gaming, and IP businesses need rigorous strategy. Ex-MBB with media/entertainment casework can land at Disney Corporate Strategy, Netflix, or gaming companies.",
+    comp: {
+      entryTotal: "$150k–$250k",
+      seniorTotal: "$300k–$600k (Director / Sr. Director of Strategy or GM)",
+      ceiling: "$800k–$3M+ in C-suite or as a senior studio/streaming executive",
+      notes:
+        "Disney, Netflix, and tech-media companies pay comparably to big tech strategy roles. Traditional studios and agencies pay less. Equity is modest except at streaming/tech players.",
+    },
+    ratings: { comp: 3, workLife: 4, prestige: 4, difficulty: 4 },
     hoursPerWeek: "45–60",
     dayToDay: [
-      "Own commercial strategy, pricing/market access, and product launches.",
-      "Coordinate across medical, regulatory, and sales.",
-      "Forecast markets and lead brand/portfolio decisions.",
+      "Corporate strategy: M&A, streaming expansion, IP monetization, international market entry, studio economics.",
+      "Gaming: live-service ops, IP licensing, acquisition targets, player economics.",
+      "Talent agencies (CAA, WME): strategic finance, packaging deals, new business verticals (sports, podcasting).",
+      "A lot of content economics modeling and competitive landscape analysis.",
     ],
-    pros: ["Mission-driven, impactful work", "Stable, large industry", "Good lifestyle + comp"],
-    cons: ["Regulatory complexity", "Slower-moving than tech", "Less prestige-glamour"],
+    pros: [
+      "Work at the intersection of culture and commerce",
+      "Intellectually rich: streaming, gaming, AI and content creation are genuinely complex strategy problems",
+      "High-prestige brands and global impact",
+    ],
+    cons: [
+      "Media industry is disrupted — headcount reductions at studios and networks",
+      "Culture fit matters a lot — it helps to genuinely love the content",
+      "Senior roles are highly relationship-driven; politics in studios can be intense",
+    ],
     breakIn: {
-      timeline: "On-campus + networked; common ex-consulting move with healthcare experience.",
-      whoHires: ["Pfizer", "J&J", "Roche/Genentech", "Novartis", "Medtronic", "biotechs"],
-      whatHelps: ["Healthcare consulting/casework", "Scientific literacy", "Commercial instinct"],
-      commonBackgrounds: ["Healthcare consulting", "Clinical/science", "Marketing", "Banking (biotech)"],
+      timeline: "On-campus (Disney, Netflix, gaming) + networked.",
+      whoHires: [
+        "Disney (Corporate Strategy & Development)",
+        "Netflix (Strategy & Finance)",
+        "Warner Bros. Discovery",
+        "NBCUniversal / Comcast",
+        "EA / Activision Blizzard (now Microsoft) / Riot",
+        "CAA / WME (strategic finance)",
+        "Spotify / Audible (audio)",
+      ],
+      whatHelps: [
+        "Prior consulting or strategy work with media/entertainment clients",
+        "Financial modeling in content or media contexts",
+        "Passion for film, gaming, or music that shows up authentically",
+        "MBA programs with media concentrations (Columbia, NYU Stern, UCLA Anderson, USC Marshall)",
+      ],
+      commonBackgrounds: ["Consulting (media/tech practice)", "Banking (TMT)", "Product (streaming/gaming)", "Prior industry experience"],
     },
-    exits: ["VP Commercial / GM", "Biotech C-suite", "Healthcare PE/VC", "Digital health startup"],
-    fit: { money: 60, workLife: 65, risk: 35, structure: 65, impact: 75, analytical: 70 },
+    exits: ["Studio executive (SVP/EVP)", "Streaming product / GM", "Gaming company leadership", "Entertainment-tech founder", "Media PE/VC"],
+    fit: { money: 50, workLife: 60, risk: 45, structure: 55, impact: 55, analytical: 70 },
+    recruiting: {
+      mbaInternship: true,
+      internshipNote: "Disney runs one of the most active and structured MBA internship programs in media — including corporate strategy, revenue, and development roles. Netflix, NBCUniversal, and EA/Activision also hire MBA interns.",
+      dedicatedChannel: true,
+      channelNote: "Disney Corporate Strategy actively recruits on-campus at select MBA programs. Netflix, WBD, and gaming companies recruit with varying structure. Schools with media business tracks (Columbia, UCLA Anderson) have the strongest pipelines.",
+    },
   },
 ];

@@ -6,6 +6,7 @@ import { CareerGrid } from "./components/CareerGrid";
 import { CareerDetail } from "./components/CareerDetail";
 import { CompareTab } from "./components/CompareTab";
 import { FitQuiz } from "./components/FitQuiz";
+import { RecruitingTable } from "./components/RecruitingTable";
 import type { Career, Category, SortKey, View } from "./types";
 
 const MAX_COMPARE = 3;
@@ -54,6 +55,11 @@ export default function App() {
     window.scrollTo({ top: 0 });
   }
 
+  function openCareerById(id: string) {
+    const c = CAREERS.find((x) => x.id === id);
+    if (c) openCareer(c);
+  }
+
   function changeView(v: View) {
     setSelected(null);
     setView(v);
@@ -91,14 +97,16 @@ export default function App() {
             onRemove={(id) => toggleCompare(id)}
             onGoExplore={() => changeView("explore")}
           />
-        ) : (
+        ) : view === "quiz" ? (
           <FitQuiz onSelect={openCareer} />
+        ) : (
+          <RecruitingTable onSelect={openCareerById} />
         )}
       </main>
 
       <footer className="mx-auto max-w-6xl px-4 py-8 text-center text-xs text-slate-600">
         Compensation ranges are US-market estimates (2025–26) and vary by firm, city, and year.
-        For directional exploration, not offers.
+        Recruiting data reflects general patterns — always verify with current school career office guidance.
       </footer>
     </div>
   );

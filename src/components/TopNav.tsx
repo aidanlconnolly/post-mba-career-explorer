@@ -4,6 +4,7 @@ const TABS: { id: View; label: string; emoji: string }[] = [
   { id: "explore", label: "Explore", emoji: "🧭" },
   { id: "compare", label: "Compare", emoji: "⚖️" },
   { id: "quiz", label: "Find my fit", emoji: "🎯" },
+  { id: "recruiting", label: "Recruiting", emoji: "📋" },
 ];
 
 export function TopNav({

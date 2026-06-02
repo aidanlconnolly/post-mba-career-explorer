@@ -18,15 +18,20 @@ function CategorySection({
     <section>
       <button
         onClick={() => setOpen((v) => !v)}
-        className="group flex w-full items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 text-left transition hover:border-slate-600 hover:bg-slate-900"
+        className="group flex w-full items-start gap-3 rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 text-left transition hover:border-slate-600 hover:bg-slate-900"
       >
-        <span className="text-xl" aria-hidden>{meta.emoji}</span>
-        <h2 className="flex-1 text-base font-semibold text-slate-200">{category}</h2>
-        <span className="rounded-full bg-slate-800 px-2 py-0.5 text-xs text-slate-500">
-          {careers.length}
-        </span>
+        <span className="mt-0.5 text-xl" aria-hidden>{meta.emoji}</span>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <h2 className="text-base font-semibold text-slate-200">{category}</h2>
+            <span className="rounded-full bg-slate-800 px-2 py-0.5 text-xs text-slate-500">
+              {careers.length}
+            </span>
+          </div>
+          <p className="mt-0.5 text-xs text-slate-500 leading-snug">{meta.roles}</p>
+        </div>
         <span
-          className={`ml-1 text-slate-500 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          className={`mt-1 shrink-0 text-slate-500 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           aria-hidden
         >
           ▾
@@ -71,8 +76,7 @@ export function CareerGrid({
     );
   }
 
-  // Preserve the canonical category order from CATEGORIES, then within each
-  // group keep whatever sort order was applied by App (comp / work-life / etc.)
+  // Preserve the canonical category order, keep within-group sort from App
   const byCategory = new Map<Category, Career[]>();
   for (const c of careers) {
     const arr = byCategory.get(c.category) ?? [];
@@ -84,7 +88,7 @@ export function CareerGrid({
   );
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-4">
       {orderedCategories.map((cat) => (
         <CategorySection
           key={cat}

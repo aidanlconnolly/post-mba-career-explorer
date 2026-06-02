@@ -1,4 +1,4 @@
-import { CategoryBadge, ExMbbBadge } from "./Badge";
+import { CategoryBadge } from "./Badge";
 import { ratingPct } from "../lib/format";
 import type { Career } from "../types";
 
@@ -51,9 +51,8 @@ export function CareerCard({
         ))}
       </div>
 
-      <div className="mt-3 flex items-center justify-between border-t border-slate-800 pt-3">
+      <div className="mt-3 border-t border-slate-800 pt-3">
         <span className="text-sm font-medium text-emerald-400">{career.comp.entryTotal}</span>
-        <ExMbbBadge fit={career.exMbbFit} />
       </div>
     </button>
   );
