@@ -9,14 +9,14 @@ const RATING_COLORS = ["", "bg-red-500", "bg-orange-500", "bg-yellow-500", "bg-l
 
 function RatingPips({ value }: { value: number }) {
   return (
-    <div className="flex items-center justify-center gap-0.5">
+    <div className="flex items-center justify-center gap-px">
       {[1, 2, 3, 4, 5].map((i) => (
         <div
           key={i}
-          className={`h-1.5 w-4 rounded-sm ${i <= value ? RATING_COLORS[value] : "bg-slate-700"}`}
+          className={`h-1.5 w-2.5 rounded-sm ${i <= value ? RATING_COLORS[value] : "bg-slate-700"}`}
         />
       ))}
-      <span className="ml-1 text-xs text-slate-400">{value}/5</span>
+      <span className="ml-1 text-xs text-slate-400">{value}</span>
     </div>
   );
 }
@@ -64,6 +64,7 @@ function SortHeader({
   sortDir,
   onSort,
   align = "left",
+  px = "px-4",
 }: {
   col: SortCol;
   label: string;
@@ -72,11 +73,12 @@ function SortHeader({
   sortDir: SortDir;
   onSort: (c: SortCol) => void;
   align?: "left" | "center";
+  px?: string;
 }) {
   const active = sortCol === col;
   return (
     <th
-      className={`px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 ${align === "center" ? "text-center" : "text-left"}`}
+      className={`${px} py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 ${align === "center" ? "text-center" : "text-left"}`}
     >
       <button
         onClick={() => onSort(col)}
@@ -158,13 +160,13 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
             <tr className="border-b border-slate-800 bg-slate-900/80">
               <SortHeader col="name" label="Career" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} />
               <SortHeader col="category" label="Category" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} />
-              <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <th className="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
                 Entry Pay
               </th>
-              <SortHeader col="comp" label="Comp" sub="earning power" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" />
-              <SortHeader col="workLife" label="Work-Life" sub="balance" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" />
-              <SortHeader col="prestige" label="Prestige" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" />
-              <SortHeader col="difficulty" label="Difficulty" sub="to break in" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" />
+              <SortHeader col="comp" label="Comp" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" px="px-2" />
+              <SortHeader col="workLife" label="W-L" sub="balance" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" px="px-2" />
+              <SortHeader col="prestige" label="Prestige" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" px="px-2" />
+              <SortHeader col="difficulty" label="Diff." sub="to break in" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} align="center" px="px-2" />
               <SortHeader
                 col="internship"
                 label="MBA Internship"
@@ -173,6 +175,7 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
                 sortDir={sortDir}
                 onSort={handleSort}
                 align="center"
+                px="px-2"
               />
               <SortHeader
                 col="channel"
@@ -182,6 +185,7 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
                 sortDir={sortDir}
                 onSort={handleSort}
                 align="center"
+                px="px-2"
               />
             </tr>
           </thead>
@@ -204,18 +208,18 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
                       {catMeta.emoji} {c.category}
                     </span>
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm font-semibold text-emerald-400">
+                  <td className="whitespace-nowrap px-3 py-3 text-xs font-semibold text-emerald-400">
                     {c.comp.entryTotal}
                   </td>
-                  <td className="px-4 py-3 text-center"><RatingPips value={c.ratings.comp} /></td>
-                  <td className="px-4 py-3 text-center"><RatingPips value={c.ratings.workLife} /></td>
-                  <td className="px-4 py-3 text-center"><RatingPips value={c.ratings.prestige} /></td>
-                  <td className="px-4 py-3 text-center"><RatingPips value={c.ratings.difficulty} /></td>
-                  <td className="px-4 py-3 text-center">
+                  <td className="px-2 py-3 text-center"><RatingPips value={c.ratings.comp} /></td>
+                  <td className="px-2 py-3 text-center"><RatingPips value={c.ratings.workLife} /></td>
+                  <td className="px-2 py-3 text-center"><RatingPips value={c.ratings.prestige} /></td>
+                  <td className="px-2 py-3 text-center"><RatingPips value={c.ratings.difficulty} /></td>
+                  <td className="px-2 py-3 text-center">
                     <Tick yes={c.recruiting.mbaInternship} />
                     <Tooltip text={c.recruiting.internshipNote} />
                   </td>
-                  <td className="px-4 py-3 text-center">
+                  <td className="px-2 py-3 text-center">
                     <Tick yes={c.recruiting.dedicatedChannel} />
                     <Tooltip text={c.recruiting.channelNote} />
                   </td>
