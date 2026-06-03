@@ -155,7 +155,18 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
 
       {/* Table */}
       <div className="overflow-x-auto rounded-xl border border-slate-800">
-        <table className="w-full text-sm">
+        <table className="w-full table-fixed text-sm">
+          <colgroup>
+            <col className="w-44" />
+            <col className="w-36" />
+            <col className="w-28" />
+            <col className="w-24" />
+            <col className="w-20" />
+            <col className="w-24" />
+            <col className="w-20" />
+            <col className="w-28" />
+            <col className="w-28" />
+          </colgroup>
           <thead>
             <tr className="border-b border-slate-800 bg-slate-900/80">
               <SortHeader col="name" label="Career" sortCol={sortCol} sortDir={sortDir} onSort={handleSort} />
@@ -200,7 +211,7 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
                       className="flex items-center gap-2 text-left hover:underline"
                     >
                       <span aria-hidden>{c.emoji}</span>
-                      <span className="font-medium text-slate-200">{c.name}</span>
+                      <span className="font-medium text-slate-200 truncate">{c.name}</span>
                     </button>
                   </td>
                   <td className="px-4 py-3">
