@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CareerCard } from "./CareerCard";
 import { SUPER_CATEGORIES, CATEGORY_MAP } from "../data/categories";
 import type { Career, Category } from "../types";
+import type { InterestState } from "../lib/interest";
 
 // ── Category tile (square card) ──────────────────────────────────
 function CategoryTile({
@@ -39,11 +40,13 @@ function SuperSection({
   categories,
   careersByCategory,
   onSelect,
+  interests,
 }: {
   label: string;
   categories: Category[];
   careersByCategory: Map<Category, Career[]>;
   onSelect: (c: Career) => void;
+  interests: Record<string, InterestState>;
 }) {
   const [openCat, setOpenCat] = useState<Category | null>(null);
 
@@ -81,7 +84,37 @@ function SuperSection({
       {openCat && openCareers.length > 0 && (
         <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {openCareers.map((c) => (
-            <CareerCard key={c.id} career={c} onClick={() => onSelect(c)} />
+            <CareerCard key={c.id} career={c} onClick={() => onSelect(c)} interest={interests[c.id]} />
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+// ── Flat interest view ───────────────────────────────────────────
+function FlatSection({
+  label,
+  careers,
+  onSelect,
+  interests,
+  emptyMsg,
+}: {
+  label: string;
+  careers: Career[];
+  onSelect: (c: Career) => void;
+  interests: Record<string, InterestState>;
+  emptyMsg: string;
+}) {
+  return (
+    <section>
+      <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-500">{label}</h2>
+      {careers.length === 0 ? (
+        <p className="text-sm text-slate-600 italic">{emptyMsg}</p>
+      ) : (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {careers.map((c) => (
+            <CareerCard key={c.id} career={c} onClick={() => onSelect(c)} interest={interests[c.id]} />
           ))}
         </div>
       )}
@@ -93,14 +126,33 @@ function SuperSection({
 export function CareerGrid({
   careers,
   onSelect,
+  interests = {},
+  flatMode = false,
 }: {
   careers: Career[];
   onSelect: (c: Career) => void;
+  interests?: Record<string, InterestState>;
+  flatMode?: boolean;
 }) {
   if (careers.length === 0) {
     return (
       <div className="rounded-xl border border-dashed border-slate-800 p-12 text-center text-slate-500">
         No careers match these filters.
+      </div>
+    );
+  }
+
+  if (flatMode) {
+    const interested = careers.filter((c) => interests[c.id] === "interested");
+    const notInterested = careers.filter((c) => interests[c.id] === "not-interested");
+    const unsorted = careers.filter((c) => !interests[c.id]);
+    return (
+      <div className="space-y-10">
+        <FlatSection label="Interested" careers={interested} onSelect={onSelect} interests={interests} emptyMsg="No roles marked interested yet." />
+        <FlatSection label="Not Interested" careers={notInterested} onSelect={onSelect} interests={interests} emptyMsg="No roles marked not interested yet." />
+        {unsorted.length > 0 && (
+          <FlatSection label="Undecided" careers={unsorted} onSelect={onSelect} interests={interests} emptyMsg="" />
+        )}
       </div>
     );
   }
@@ -122,6 +174,7 @@ export function CareerGrid({
           categories={sc.categories}
           careersByCategory={byCategory}
           onSelect={onSelect}
+          interests={interests}
         />
       ))}
     </div>

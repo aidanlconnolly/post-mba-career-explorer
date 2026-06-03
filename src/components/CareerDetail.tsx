@@ -4,6 +4,7 @@ import { RatingBar } from "./RatingBar";
 import { RATING_LABELS, stars } from "../lib/format";
 import { PROGRESSIONS } from "../data/progression";
 import type { Career, ProgressionLikelihood } from "../types";
+import type { InterestState } from "../lib/interest";
 
 const LIKELIHOOD_STYLES: Record<ProgressionLikelihood, { badge: string; label: string }> = {
   High:     { badge: "border-emerald-500/40 bg-emerald-500/10 text-emerald-300", label: "High" },
@@ -55,12 +56,16 @@ export function CareerDetail({
   onToggleCompare,
   inCompare,
   canAddCompare,
+  interest,
+  onSetInterest,
 }: {
   career: Career;
   onBack: () => void;
   onToggleCompare: () => void;
   inCompare: boolean;
   canAddCompare: boolean;
+  interest?: InterestState;
+  onSetInterest: (state: InterestState | null) => void;
 }) {
   return (
     <div className="mx-auto max-w-4xl">
@@ -248,6 +253,35 @@ export function CareerDetail({
         <Section title="Where it leads (exit paths)">
           <Chips items={career.exits} />
         </Section>
+      </div>
+
+      {/* Interest buttons */}
+      <div className="mt-6 rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+        <p className="mb-4 text-sm font-semibold text-slate-300">Is this role a fit for you?</p>
+        <div className="flex flex-wrap gap-3">
+          <button
+            onClick={() => onSetInterest(interest === "interested" ? null : "interested")}
+            className={`flex items-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-medium transition ${
+              interest === "interested"
+                ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
+                : "border-slate-700 text-slate-300 hover:border-emerald-600/60 hover:bg-emerald-950/30 hover:text-emerald-300"
+            }`}
+          >
+            <span>👍</span> Interested
+            {interest === "interested" && <span className="ml-1 text-xs opacity-60">(click to clear)</span>}
+          </button>
+          <button
+            onClick={() => onSetInterest(interest === "not-interested" ? null : "not-interested")}
+            className={`flex items-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-medium transition ${
+              interest === "not-interested"
+                ? "border-rose-500 bg-rose-500/20 text-rose-300"
+                : "border-slate-700 text-slate-300 hover:border-rose-700/60 hover:bg-rose-950/30 hover:text-rose-300"
+            }`}
+          >
+            <span>👎</span> Not Interested
+            {interest === "not-interested" && <span className="ml-1 text-xs opacity-60">(click to clear)</span>}
+          </button>
+        </div>
       </div>
     </div>
   );
