@@ -122,6 +122,7 @@ export const CATEGORY_MAP: Record<Category, CategoryMeta> = CATEGORIES.reduce(
   {} as Record<Category, CategoryMeta>
 );
 
+
 // Broader groupings for the explore grid
 export const SUPER_CATEGORIES: SuperCategoryMeta[] = [
   {
@@ -154,3 +155,8 @@ export const SUPER_CATEGORIES: SuperCategoryMeta[] = [
     categories: ["Impact & Climate"],
   },
 ];
+
+// Maps each sub-category to its super-category label
+export const CATEGORY_TO_SUPER: Record<Category, string> = Object.fromEntries(
+  SUPER_CATEGORIES.flatMap((sc) => sc.categories.map((cat) => [cat, sc.label]))
+) as Record<Category, string>;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CAREERS } from "../data/careers";
-import { CATEGORY_MAP } from "../data/categories";
+import { CATEGORY_TO_SUPER } from "../data/categories";
 
 type SortCol = "name" | "category" | "internship" | "channel" | "comp" | "workLife" | "prestige" | "difficulty";
 type SortDir = "asc" | "desc";
@@ -202,7 +202,6 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
           </thead>
           <tbody className="divide-y divide-slate-800/60">
             {sorted.map((c) => {
-              const catMeta = CATEGORY_MAP[c.category];
               return (
                 <tr key={c.id} className="bg-slate-950/30 transition hover:bg-slate-900/60">
                   <td className="px-4 py-3">
@@ -214,10 +213,8 @@ export function RecruitingTable({ onSelect }: { onSelect: (id: string) => void }
                       <span className="font-medium text-slate-200 truncate">{c.name}</span>
                     </button>
                   </td>
-                  <td className="px-4 py-3">
-                    <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium ${catMeta.badge}`}>
-                      {catMeta.emoji} {c.category}
-                    </span>
+                  <td className="px-4 py-3 text-xs text-slate-400">
+                    {CATEGORY_TO_SUPER[c.category]}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3 text-xs font-semibold text-emerald-400">
                     {c.comp.entryTotal}
