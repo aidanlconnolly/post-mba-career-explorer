@@ -40,10 +40,10 @@ export function CompareTab({
           onClick={onGoExplore}
           className="mt-4 rounded-lg bg-slate-100 px-4 py-2 text-sm font-medium text-slate-900 hover:bg-white"
         >
-          Browse careers →
+          Browse careers &rarr;
         </button>
         <p className="mt-3 text-xs text-slate-500">
-          Open any career and tap “Add to compare” (up to 3).
+          Open any career and tap Interested to add it here.
         </p>
       </div>
     );

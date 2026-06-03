@@ -10,15 +10,18 @@ import { SORT_LABELS, SORT_KEYS } from "./lib/format";
 import { useInterests } from "./lib/interest";
 import type { Career, SortKey, View } from "./types";
 
-const MAX_COMPARE = 3;
-
 export default function App() {
   const [view, setView] = useState<View>("explore");
   const [selected, setSelected] = useState<Career | null>(null);
   const [sortKey, setSortKey] = useState<SortKey>("comp");
-  const [compareIds, setCompareIds] = useState<string[]>([]);
   const [interestMode, setInterestMode] = useState(false);
   const { interests, setInterest } = useInterests();
+
+  // Compare list is derived from interested careers — no manual add needed
+  const compareIds = useMemo(
+    () => Object.entries(interests).filter(([, v]) => v === "interested").map(([id]) => id),
+    [interests]
+  );
 
   const sorted = useMemo(
     () => [...CAREERS].sort((a, b) => b.ratings[sortKey] - a.ratings[sortKey]),
@@ -32,16 +35,6 @@ export default function App() {
         .filter((c): c is Career => Boolean(c)),
     [compareIds]
   );
-
-  function toggleCompare(id: string) {
-    setCompareIds((prev) =>
-      prev.includes(id)
-        ? prev.filter((x) => x !== id)
-        : prev.length < MAX_COMPARE
-          ? [...prev, id]
-          : prev
-    );
-  }
 
   function openCareer(c: Career) {
     setSelected(c);
@@ -67,9 +60,6 @@ export default function App() {
           <CareerDetail
             career={selected}
             onBack={() => setSelected(null)}
-            inCompare={compareIds.includes(selected.id)}
-            canAddCompare={compareIds.length < MAX_COMPARE}
-            onToggleCompare={() => toggleCompare(selected.id)}
             interest={interests[selected.id]}
             onSetInterest={(state) => setInterest(selected.id, state)}
           />
@@ -112,7 +102,7 @@ export default function App() {
         ) : view === "compare" ? (
           <CompareTab
             careers={compareCareers}
-            onRemove={(id) => toggleCompare(id)}
+            onRemove={(id) => setInterest(id, null)}
             onGoExplore={() => changeView("explore")}
           />
         ) : view === "quiz" ? (

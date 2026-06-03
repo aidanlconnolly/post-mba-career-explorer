@@ -53,17 +53,11 @@ function Chips({ items }: { items: string[] }) {
 export function CareerDetail({
   career,
   onBack,
-  onToggleCompare,
-  inCompare,
-  canAddCompare,
   interest,
   onSetInterest,
 }: {
   career: Career;
   onBack: () => void;
-  onToggleCompare: () => void;
-  inCompare: boolean;
-  canAddCompare: boolean;
   interest?: InterestState;
   onSetInterest: (state: InterestState | null) => void;
 }) {
@@ -92,19 +86,6 @@ export function CareerDetail({
               </div>
             </div>
           </div>
-          <button
-            onClick={onToggleCompare}
-            disabled={!inCompare && !canAddCompare}
-            className={`shrink-0 rounded-lg border px-3 py-2 text-sm font-medium transition ${
-              inCompare
-                ? "border-indigo-500 bg-indigo-500/15 text-indigo-300"
-                : canAddCompare
-                  ? "border-slate-700 text-slate-200 hover:border-slate-500"
-                  : "cursor-not-allowed border-slate-800 text-slate-600"
-            }`}
-          >
-            {inCompare ? "✓ In compare" : canAddCompare ? "⚖️ Add to compare" : "Compare full (3)"}
-          </button>
         </div>
 
         {/* Ratings */}
