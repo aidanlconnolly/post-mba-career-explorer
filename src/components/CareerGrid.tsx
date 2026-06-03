@@ -22,8 +22,8 @@ function SuperSection({
 
   return (
     <section>
-      <div className="mb-5 -mx-4 bg-white px-6 py-3">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-slate-900">
+      <div className="mb-5 -mx-4 bg-slate-800 px-6 py-3">
+        <h2 className="text-sm font-bold uppercase tracking-widest text-slate-100">
           {label}
         </h2>
       </div>
